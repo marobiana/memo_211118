@@ -5,10 +5,13 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.memo.test.model.Test;
 
 @Controller
 public class TestController {
@@ -43,6 +46,20 @@ public class TestController {
 	@PostMapping("/test4") 
 	public String test4(
 			@RequestParam("ids[]") List<Integer> ids) {
+		
+		return "성공";
+	}
+	
+	// jsp 2
+	@RequestMapping("/test5")
+	public String test5() {
+		return "test/test5";
+	}
+	
+	@ResponseBody
+	@RequestMapping("/test5_request")
+	public String req(
+			@ModelAttribute Test test) {
 		
 		return "성공";
 	}
