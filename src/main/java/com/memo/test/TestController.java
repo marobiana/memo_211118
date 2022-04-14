@@ -4,12 +4,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.boot.autoconfigure.web.reactive.function.client.WebClientAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import com.memo.test.model.Test;
 
@@ -62,5 +64,25 @@ public class TestController {
 			@ModelAttribute Test test) {
 		
 		return "성공";
+	}
+	
+	
+	// web client test
+	private WebClient webClient = WebClient.create("http://localhost:8080");
+	
+	@ResponseBody
+	@RequestMapping("/web_client_test")
+	public Object webClientTest() {
+		Object obj = webClient.get()
+				.uri("/test2")
+				.retrieve()
+				.bodyToMono(Object.class);
+		
+		return obj;
+	}
+	
+	@RequestMapping("/hyein")
+	public String hyein() {
+		return "test/hyein";
 	}
 }
