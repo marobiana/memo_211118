@@ -19,7 +19,7 @@ public class UserController {
 	 */
 	@RequestMapping("/sign_up_view")
 	public String signUpView(Model model) {
-		model.addAttribute("viewName", "user/sign_up");
+		model.addAttribute("viewName", "user/sign_up"); //adsfadf
 		
 		return "template/layout";
 	}
